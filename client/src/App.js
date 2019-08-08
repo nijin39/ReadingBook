@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import SignUp from './SingUp';
 
 class App extends Component {
   state = {
@@ -29,6 +30,7 @@ class App extends Component {
       <div>
         <h1>{title}</h1>
         <p>{body}</p>
+        <SignUp/>
       </div>
     );
   }
