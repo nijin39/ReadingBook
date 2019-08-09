@@ -1,8 +1,6 @@
-package com.tandem6.readingbook.book;
-
+package com.tandem6.readingbook.book.domain;
 
 import com.mashape.unirest.http.exceptions.UnirestException;
-import com.tandem6.readingbook.book.domain.BookExternalRepository;
 import com.tandem6.readingbook.book.infra.DTO.KakaoBook;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
@@ -16,10 +14,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.io.IOException;
 import java.util.List;
 
+import static org.junit.Assert.*;
+
 @Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class DaumBookRepositoryTest {
+public class BookExternalRepositoryTest {
 
     @Autowired
     @Qualifier(value = "daum")
@@ -39,5 +39,3 @@ public class DaumBookRepositoryTest {
         Assert.assertNotNull(result);
     }
 }
-
-//Generated with love by TestMe :) Please report issues and submit feature requests at: http://weirddev.com/forum#!/testme
