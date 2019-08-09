@@ -23,7 +23,18 @@ public class BookApplication {
 
     public void findByisbnAndSave(String isbn) throws IOException, UnirestException {
         List<KakaoBook> books = bookExternalRepository.findByIsbn(isbn);
-        books.stream()
-                .forEach(book -> bookRepository.save(new Book(book)));
+
+        if(hasBook(books)){
+            books.stream()
+                    .forEach(book -> bookRepository.save(new Book(book)));
+        } else {
+            throw new RuntimeException("No Book");
+        }
+
+
+    }
+
+    private boolean hasBook(List<KakaoBook> books) {
+        return books.size() != 0;
     }
 }
