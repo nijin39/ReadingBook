@@ -24,7 +24,7 @@ public class Book extends TimeEntity implements Serializable{
     @Column private String contents;
     @Column private String url;
 
-    @Column(unique=true)
+    @Column
     private String isbn;
     @Column private String datetime;
 

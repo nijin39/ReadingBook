@@ -36,9 +36,9 @@ public class BookApplication {
     public List<KakaoBook> findByIsbnAndSave(String isbn) throws IOException, UnirestException {
         List<KakaoBook> books = bookExternalRepository.findByIsbn(isbn);
 
-        if( alreadyRegistrated(isbn) ){
-            throw new RuntimeException("Already Registrated the book");
-        }
+//        if( alreadyRegistrated(isbn) ){
+//            throw new RuntimeException("Already Registrated the book");
+//        }
 
         if(hasBook(books)){
             books.stream()
@@ -49,10 +49,10 @@ public class BookApplication {
         return books;
     }
 
-    private boolean alreadyRegistrated(String isbn) {
-        List<Book> books = bookRepository.findByIsbnContainingIgnoreCase(isbn);
-        return books.size() !=0 ? true : false;
-    }
+//    private boolean alreadyRegistrated(String isbn) {
+//        List<Book> books = bookRepository.findByIsbnContainingIgnoreCase(isbn);
+//        return books.size() !=0 ? true : false;
+//    }
 
     private boolean hasBook(List<KakaoBook> books) {
         return books.size() != 0;
