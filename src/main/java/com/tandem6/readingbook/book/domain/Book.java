@@ -20,7 +20,9 @@ public class Book {
     @Column private String title;
     @Column private String contents;
     @Column private String url;
-    @Column private String isbn;
+
+    @Column(unique=true)
+    private String isbn;
     @Column private String datetime;
 
     @ElementCollection
@@ -42,5 +44,6 @@ public class Book {
 
     public Book(KakaoBook kakaoBook) {
         this.title = kakaoBook.getTitle();
+        this.isbn = kakaoBook.getIsbn();
     }
 }

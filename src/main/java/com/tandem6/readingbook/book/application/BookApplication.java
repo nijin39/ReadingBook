@@ -7,6 +7,7 @@ import com.tandem6.readingbook.book.domain.BookRepository;
 import com.tandem6.readingbook.book.infra.DTO.KakaoBook;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.List;
 
@@ -21,8 +22,23 @@ public class BookApplication {
         this.bookExternalRepository = bookExternalRepository;
     }
 
-    public void findByisbnAndSave(String isbn) throws IOException, UnirestException {
+    @Transactional
+    public List<Book> findAllMyBook() {
+        return bookRepository.findAll();
+    }
+
+    @Transactional
+    public List<Book> findByIsbn(String isbn) {
+        return bookRepository.findByIsbnContainingIgnoreCase(isbn);
+    }
+
+    @Transactional
+    public List<KakaoBook> findByIsbnAndSave(String isbn) throws IOException, UnirestException {
         List<KakaoBook> books = bookExternalRepository.findByIsbn(isbn);
+
+        if( alreadyRegistrated(isbn) ){
+            throw new RuntimeException("Already Registrated the book");
+        }
 
         if(hasBook(books)){
             books.stream()
@@ -30,8 +46,12 @@ public class BookApplication {
         } else {
             throw new RuntimeException("No Book");
         }
+        return books;
+    }
 
-
+    private boolean alreadyRegistrated(String isbn) {
+        List<Book> books = bookRepository.findByIsbnContainingIgnoreCase(isbn);
+        return books.size() !=0 ? true : false;
     }
 
     private boolean hasBook(List<KakaoBook> books) {

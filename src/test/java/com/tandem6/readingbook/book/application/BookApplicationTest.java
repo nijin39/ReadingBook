@@ -27,13 +27,13 @@ public class BookApplicationTest {
 
     @Test(expected=RuntimeException.class)
     public void T01_ISBN기준으로_책이_없는_경우() throws IOException, UnirestException {
-        bookApplication.findByisbnAndSave("77");
+        bookApplication.findByIsbnAndSave("77");
         final List<Book> allBook = bookRepository.findAll();
     }
 
     @Test
     public void T02_ISBN기준으로_책이_있는_경우() throws IOException, UnirestException {
-        bookApplication.findByisbnAndSave("1155026519");
+        bookApplication.findByIsbnAndSave("9788949110486");
         final List<Book> allBook = bookRepository.findAll();
         Assert.assertEquals(1, allBook.size());
     }
