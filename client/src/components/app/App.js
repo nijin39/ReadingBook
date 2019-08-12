@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import SignUp from './SingUp';
+import SignUp from '../SingUp/SingUp';
+import RecipeReviewCard from "../RecipeReviewCard/RecipeReviewCard";
+import ImgMediaCard from "../ImgMediaCard/ImgMediaCard";
+import BookList from "../BookList/BookList";
 
 class App extends Component {
   state = {
@@ -31,6 +34,9 @@ class App extends Component {
         <h1>{title}</h1>
         <p>{body}</p>
         <SignUp/>
+        <RecipeReviewCard/>
+        <ImgMediaCard/>
+        <BookList/>
       </div>
     );
   }
